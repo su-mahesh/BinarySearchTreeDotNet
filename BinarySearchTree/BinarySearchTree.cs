@@ -42,5 +42,20 @@ namespace BinarySearchTreeNameSpace
             return Current == null ? 0 : 1 + this.getSizeRecursively(Current.Left)
                                            + this.getSizeRecursively(Current.Right);
         }
+
+        public bool SearchKey(K key)
+        {
+            return SearchRecursively(Root, key);
+        }
+
+        private bool SearchRecursively(BinarySearchTreeNode<K> Current, K key)
+        {
+            if (Current == null)
+                return false;
+            if (Current.Key.CompareTo(key) == 0)
+                return true;
+            else
+                return SearchRecursively(Current.Left, key) || SearchRecursively(Current.Right, key);
+        }
     }
 }
