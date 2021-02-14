@@ -14,6 +14,10 @@ namespace BinarySearchTreeNameSpace
         }
 
         public K GetRoot{ get { return Root.Key; } }
+
+        public K GetRootLeft {  get { return Root.Left.Key; } }
+        public K GetRootRight { get { return Root.Right.Key; } }
+
         private BinarySearchTreeNode<K> AddRecursively(BinarySearchTreeNode<K> Current, K Key)
         {
             if (Current == null)
@@ -26,6 +30,17 @@ namespace BinarySearchTreeNameSpace
             else
                 Current.Right = AddRecursively(Current.Right, Key);
             return Current;
+        }
+
+        public int GetSize()
+        {
+            return this.getSizeRecursively(Root);
+        }
+
+        private int getSizeRecursively(BinarySearchTreeNode<K> Current)
+        {
+            return Current == null ? 0 : 1 + this.getSizeRecursively(Current.Left)
+                                           + this.getSizeRecursively(Current.Right);
         }
     }
 }
